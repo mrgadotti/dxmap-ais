@@ -1,0 +1,23 @@
+# DXMaps AIS reporter configuration.
+# Installed to /etc/dxmaps/dxmaps.conf by install.sh. Restart after editing:
+#   sudo systemctl restart dxmaps
+
+[station]
+callsign = PU5FON        # your callsign / station id (1-8 characters)
+locator  = GG52TM        # your 6-character Maidenhead grid locator
+
+[listen]
+# Where AIS-catcher sends NMEA over UDP (AIS-catcher -u 127.0.0.1 7000)
+host = 127.0.0.1
+port = 7000
+
+[dxmaps]
+host    = www.dxmaps.com
+port    = 7350
+version = 1.15
+
+[filters]
+min_km          = 300    # only report ships at least this far away
+max_km          = 3000   # discard farther reports as decoding errors
+resend_min      = 15     # minutes between spots of the same MMSI
+allow_repeaters = false
