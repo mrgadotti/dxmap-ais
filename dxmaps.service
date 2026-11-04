@@ -11,7 +11,7 @@ WorkingDirectory=/opt/dxmaps
 Environment=HOME=/var/lib/dxmaps
 Environment=UV_CACHE_DIR=/var/lib/dxmaps/.cache/uv
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/usr/local/bin/uv run --script /opt/dxmaps/ais_dxmaps.py --config /etc/dxmaps/dxmaps.conf
+ExecStart=/usr/local/bin/uv run --no-project --script /opt/dxmaps/ais_dxmaps.py --config /etc/dxmaps/dxmaps.conf
 Restart=always
 RestartSec=10
 NoNewPrivileges=true

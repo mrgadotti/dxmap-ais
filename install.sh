@@ -57,8 +57,11 @@ else
 fi
 
 echo "==> Pre-fetching Python dependencies"
+# Run from a directory the service user can read: uv looks for a project in the
+# current directory, and the checkout (e.g. under /home/<user>) may be private.
+cd "$APP"
 runuser -u "$USER_NAME" -- env HOME="$STATE" UV_CACHE_DIR="$STATE/.cache/uv" \
-  /usr/local/bin/uv run --script "$APP/ais_dxmaps.py" --help >/dev/null
+  /usr/local/bin/uv run --no-project --script "$APP/ais_dxmaps.py" --help >/dev/null
 
 echo "==> Installing systemd service"
 install -m 644 "$SRC/dxmaps.service" /etc/systemd/system/dxmaps.service
